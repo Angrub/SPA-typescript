@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre&family=Padauk:wght@400;700&family=Press+Start+2P&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size:  62.5%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #111a44;
+}
+
+#root {
+    height: 100vh;
+    width: 100%;
+    max-width: 768px;
+    background-color: #2C2891;
+}
