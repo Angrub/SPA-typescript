@@ -1,10 +1,14 @@
 import arrow from '../images/right-arrow.png'
 
 class gameCarrousel extends HTMLElement {
-    
+    index: number;
+    cards: Element[];
+
     constructor() {
         super();
         this.attachShadow({mode:'open'});
+        this.index = 0;
+        this.cards = [];
     }
 
     getTemplate(): HTMLTemplateElement {
@@ -17,6 +21,15 @@ class gameCarrousel extends HTMLElement {
                 <div class="card-container">
                     <game-card
                     gamelink="#/mw/"
+                    title="minesweeper"
+                    ></game-card>
+                    <game-card
+                    gamelink="#/mw/"
+                    title="minesweeper"
+                    ></game-card>
+                    <game-card
+                    gamelink="#/mw/"
+                    title="minesweeper"
                     ></game-card>
                 </div>
                 <button>
@@ -36,6 +49,7 @@ class gameCarrousel extends HTMLElement {
                     display: flex;
                     width: 100%;
                     height: 85vh;
+                    overflow: hidden;
                 }
 
                 .carrousel {
@@ -47,7 +61,11 @@ class gameCarrousel extends HTMLElement {
                 }
 
                 .card-container {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
                     width: 60%;
+                    height: 300px;
                     z-index: 1;
                 }
                 
@@ -97,17 +115,84 @@ class gameCarrousel extends HTMLElement {
         `;
     }
 
-    events(): void {
-    
+    slider(): void {
+        // init
+        this.initSlider();
+
+        // buttons
+        const left = this.shadowRoot?.querySelector('.left');
+        const right = this.shadowRoot?.querySelector('.right');
+
+        // buttons events
+        left?.addEventListener('click', () => {
+            this.changeLeft();
+        });
+
+        right?.addEventListener('click', () => {
+            this.changeRight();
+        });
+    }
+
+    changeLeft(): void {
+        if(this.index < this.cards.length - 1) {
+            // current
+            const currentCard = this.getCard(this.index);
+            currentCard.classList.remove('center');
+            currentCard.classList.add('left');
+
+            // next
+            const nextCard = this.getCard(this.index + 1);
+            nextCard.classList.remove('right');
+            nextCard.classList.add('center');
+            this.index++;
+        }
+    }
+
+    changeRight(): void {
+        if(this.index > 0) {
+            // current
+            const currentCard = this.getCard(this.index);
+            currentCard.classList.remove('center');
+            currentCard.classList.add('right');
+
+            // next
+            const nextCard = this.getCard(this.index - 1);
+            nextCard.classList.remove('left');
+            nextCard.classList.add('center');
+            this.index--;
+        }
+    }
+
+    getCard(index: number): Element {
+        const card = this.cards[index].shadowRoot?.querySelector('article');
+        return (<Element>card);
+    }
+
+    initSlider(): void {
+        // cards
+        const cardsNodeList = this.shadowRoot?.querySelectorAll('game-card');
+        if(cardsNodeList === undefined) throw new Error('Cards load failed');
+
+        cardsNodeList.forEach(element => {
+            const card = element.shadowRoot?.querySelector('article');
+
+            (<HTMLElement>card).classList.add('right');
+        });
+        this.cards = [...cardsNodeList];
+        
+        // first card
+        const firstCard = this.getCard(this.index);
+        firstCard?.classList.remove('right');
+        firstCard?.classList.add('center');
     }
 
     render(): void {
         this.shadowRoot?.appendChild(this.getTemplate().content.cloneNode(true));
+        this.slider();
     }
 
     connectedCallback(): void {
         this.render();
-        
     }
 }
 

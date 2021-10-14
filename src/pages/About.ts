@@ -3,7 +3,7 @@ const About = (): string => {
         <nav-arcade
             returncontent="home"
             returnlink="/"
-            githublink=""
+            githublink="https://github.com/Angrub/SPA-typescript"
         ></nav-arcade>
         <project-info></project-info>
     `;

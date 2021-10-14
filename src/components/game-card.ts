@@ -27,7 +27,7 @@ class gameCard extends HTMLElement {
         const template = document.createElement('template');
         template.innerHTML = `
             <!-- content -->
-            <article class="">
+            <article>
                 <a href="${this.gamelink}">
                     <img src="${this.img}" alt="">
                     <div class="shadow"></div>
@@ -46,8 +46,10 @@ class gameCard extends HTMLElement {
             <style>
 
                 :host {
+                    position: absolute;
                     display: flex;
                     justify-content: center;
+                    visibility: hidden;
                 }
 
                 article {
@@ -56,6 +58,10 @@ class gameCard extends HTMLElement {
                     height: auto;
                     box-shadow: 0px 1px 11px 0px black;
                     border-radius: 1rem;
+
+                    /* transitions */
+                    transition: all 350ms;
+                    transition-timing-function: ease-in-out;
                 }
 
                 a {
@@ -77,14 +83,17 @@ class gameCard extends HTMLElement {
                     background-color: black;
                     opacity: 0.5;
                     border-radius: 1rem;
+
+                    /* transitions */
+                    transition: opacity 100ms;
+                    transition-timing-function: ease-in-out;
                 }
 
                 h3 {
                     margin: 0;
                     color: #FFFD95;
                     font-family: 'Padauk', sans-serif;
-                    font-size: 3.5rem;
-                    
+                    font-size: 3rem;
                 }
 
                 .title-container {
@@ -101,29 +110,33 @@ class gameCard extends HTMLElement {
                     opacity: 0.7;
                 }
 
-                .animate {
-                    transition: all 1s;
-                }
-
                 .left {
-                    transform: translateX(-300px);
+                    transform: translateX(-400px);
+                    visibility: hidden;
                 }
 
                 .right {
-                    transform: translateX(300px);
+                    transform: translateX(400px);
+                    visibility: hidden;
                 }
 
-                .out {
-                    opacity: 0;
+                .center {
+                    transform: translateX(0);
+                    visibility: visible;
                 }
 
-                .in {
-                    opacity: 1;
-                }
 
                 @media (min-width: 768px) {
                     article {
                         width: 80%;
+                    }
+
+                    .left {
+                        transform: translateX(-600px);
+                    }
+
+                    .right {
+                        transform: translateX(600px);
                     }
                 }
 

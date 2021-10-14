@@ -10,7 +10,7 @@ class footerArcade extends HTMLElement {
         template.innerHTML = `
             <footer>
                 <ul>
-                    <li><a href="">Repository</a></li>
+                    <li><a href="https://github.com/Angrub/SPA-typescript">Repository</a></li>
                     <li>Contact - angru1810@gmail.com</li>
                     <li>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></li>
                 </ul>

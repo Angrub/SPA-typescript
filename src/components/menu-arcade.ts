@@ -104,6 +104,9 @@ class menuArcade extends HTMLElement {
                     font-size: 2rem;
                     color: #FFFD95;
                     text-align: center;
+
+                    transition: background-color 100ms;
+                    transition-timing-function: ease-in-out; 
                 }
 
                 a:hover {

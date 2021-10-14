@@ -33,7 +33,7 @@ class projectInfo extends HTMLElement {
                     display: flex;
                     align-items: center;
                     width: 100%;
-                    height: 75vh;
+                    height: 85vh;
                 }
                 
                 .about {
@@ -42,14 +42,29 @@ class projectInfo extends HTMLElement {
                     justify-content: center;
                     align-items: center;
                     width: 85%;
-                    height: 80%;
-                    margin: 0 auto;
+                    height: auto;
+                    margin: 10rem auto;
+
                     padding: 1.3rem 0;
                     border-radius: 0.5rem;
                     border: 4px outset #1C7947;
                     background-color: #1C7947;
                     color: #FFFD95;
+
+                    animation: 500ms arrival-about 500ms ease-in-out forwards;
                 }
+
+                @keyframes arrival-about {
+                    0% {
+                        transform: translateY(200px);
+                        opacity: 0;
+                    }
+                    100% {
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+                }
+
 
                 h2 {
                     width: 80%;
@@ -68,6 +83,20 @@ class projectInfo extends HTMLElement {
                     
                     font-family: 'Padauk', sans-serif;
                     font-size: 1.5rem;
+
+
+                    animation: 1s arrival 500ms ease-in-out forwards;
+                }
+
+                @keyframes arrival {
+                    0% {
+                        transform: translateX(50px);
+                        opacity: 0;
+                    }
+                    100% {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
                 }
 
                 img {
@@ -75,10 +104,13 @@ class projectInfo extends HTMLElement {
                     margin: 0;
                     border: 1px outset #39A388;
                     border-radius: 50%;
+
+                    animation: 1s arrival 500ms ease-in-out forwards;
                 }
 
                 @media (min-width: 768px) {
                     .about {
+                        width: 70%;
                         justify-content: space-evenly;
                     }
                 }
