@@ -1,5 +1,3 @@
-import createGame from "../minesweeper";
-
 class minesWeeper extends HTMLElement {
     widthmw: string;
     heightmw: string;
@@ -12,10 +10,12 @@ class minesWeeper extends HTMLElement {
         super();
         this.attachShadow({mode:'open'});
         const cell = 30;
+
         // width minesweeper
         const rowWidth = Math.floor(window.visualViewport.width * 0.9 / cell);
         const width = rowWidth * cell;
         this.widthmw = `${(width > 690) ? 690: width}`;
+        
         // heigth minesweeper
         const columnHeight = Math.floor(window.visualViewport.height / 1.5 / cell);
         const gui = 50;
@@ -54,9 +54,14 @@ class minesWeeper extends HTMLElement {
     }
 
     render(): void {
+        
         this.shadowRoot?.appendChild(this.getTemplate().content.cloneNode(true));
         const root = this.shadowRoot?.querySelector('#r');
-        createGame(<Element>root, parseInt(this.widthmw), parseInt(this.heightmw))
+
+        import(/* webpackChunkName: "minesweeper" */ '../minesweeper').then(({createGame}) => {
+            createGame(<Element>root, parseInt(this.widthmw), parseInt(this.heightmw));
+        })
+        
     }
 
     connectedCallback(): void {

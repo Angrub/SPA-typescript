@@ -11,10 +11,17 @@ class projectInfo extends HTMLElement {
         template.innerHTML = `
             <div class="about">
                 <h2>About this project</h2>
-                <p>A SPA with typescript, web components and SSR. <br><br>
+                <p>A SPA with typescript and web components.<br><br>
 
-                    This project is the culmination of my desire to develop a game engine with the canvas API. The result is a game engine developed with typescript and a minesweeper as a demo <br> <br>
+                    This project is the culmination of my desire to develop a game engine with the canvas API. The result is a game engine developed with typescript and a minesweeper as a demo. <br> <br>
                     
+                    Optimizations:<br>
+
+                    1. Resource prefetching and preloading<br>
+                    2. Lightweight css animations<br>
+                    3. Code splitting<br>
+                    4. Lazy load<br><br>
+
                     My github:
                 </p>
                 <a href="https://github.com/Angrub">
@@ -33,7 +40,8 @@ class projectInfo extends HTMLElement {
                     display: flex;
                     align-items: center;
                     width: 100%;
-                    height: 85vh;
+                    height: 90vh;
+                    overflow: hidden;
                 }
                 
                 .about {
@@ -41,7 +49,7 @@ class projectInfo extends HTMLElement {
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    width: 85%;
+                    width: 80%;
                     height: auto;
                     margin: 10rem auto;
 
@@ -51,7 +59,7 @@ class projectInfo extends HTMLElement {
                     background-color: #1C7947;
                     color: #FFFD95;
 
-                    animation: 500ms arrival-about 500ms ease-in-out forwards;
+                    animation: arrival-about 500ms ease-in-out ;
                 }
 
                 @keyframes arrival-about {
@@ -84,8 +92,8 @@ class projectInfo extends HTMLElement {
                     font-family: 'Padauk', sans-serif;
                     font-size: 1.5rem;
 
-
-                    animation: 1s arrival 500ms ease-in-out forwards;
+                    opacity: 0;
+                    animation: 500ms arrival 500ms ease-in-out forwards;
                 }
 
                 @keyframes arrival {
@@ -105,6 +113,7 @@ class projectInfo extends HTMLElement {
                     border: 1px outset #39A388;
                     border-radius: 50%;
 
+                    opacity: 0;
                     animation: 1s arrival 500ms ease-in-out forwards;
                 }
 

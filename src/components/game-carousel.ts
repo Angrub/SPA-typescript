@@ -14,8 +14,8 @@ class gameCarrousel extends HTMLElement {
     getTemplate(): HTMLTemplateElement {
         const template = document.createElement('template');
         template.innerHTML = `
-            <section class="carrousel">
-                <button>
+            <section class="carousel">
+                <button class="button-left">
                     <span class="left"></span>
                 </button>
                 <div class="card-container">
@@ -32,7 +32,7 @@ class gameCarrousel extends HTMLElement {
                     title="minesweeper"
                     ></game-card>
                 </div>
-                <button>
+                <button class="button-right">
                     <span class="right"></span>
                 </button>
             </section>
@@ -52,7 +52,7 @@ class gameCarrousel extends HTMLElement {
                     overflow: hidden;
                 }
 
-                .carrousel {
+                .carousel {
                     display: flex;
                     width: 100%;
                     height: auto;
@@ -120,8 +120,8 @@ class gameCarrousel extends HTMLElement {
         this.initSlider();
 
         // buttons
-        const left = this.shadowRoot?.querySelector('.left');
-        const right = this.shadowRoot?.querySelector('.right');
+        const left = this.shadowRoot?.querySelector('.button-left');
+        const right = this.shadowRoot?.querySelector('.button-right');
 
         // buttons events
         left?.addEventListener('click', () => {
@@ -133,7 +133,7 @@ class gameCarrousel extends HTMLElement {
         });
     }
 
-    changeLeft(): void {
+    changeRight(): void {
         if(this.index < this.cards.length - 1) {
             // current
             const currentCard = this.getCard(this.index);
@@ -148,7 +148,7 @@ class gameCarrousel extends HTMLElement {
         }
     }
 
-    changeRight(): void {
+    changeLeft(): void {
         if(this.index > 0) {
             // current
             const currentCard = this.getCard(this.index);
@@ -173,6 +173,7 @@ class gameCarrousel extends HTMLElement {
         const cardsNodeList = this.shadowRoot?.querySelectorAll('game-card');
         if(cardsNodeList === undefined) throw new Error('Cards load failed');
 
+        // cards start on the right 
         cardsNodeList.forEach(element => {
             const card = element.shadowRoot?.querySelector('article');
 

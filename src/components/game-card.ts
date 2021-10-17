@@ -53,6 +53,7 @@ class gameCard extends HTMLElement {
                 }
 
                 article {
+                    will-change: transform
                     position: relative;
                     width: 100%;
                     height: auto;
@@ -94,6 +95,20 @@ class gameCard extends HTMLElement {
                     color: #FFFD95;
                     font-family: 'Padauk', sans-serif;
                     font-size: 3rem;
+
+                    opacity: 0;
+                    
+                    animation: h3 100ms 100ms ease-in-out forwards
+                }
+
+                @keyframes h3 {
+                    0% {
+                        opacity: 0;
+                    }
+
+                    100% {
+                        opacity: 1;
+                    }
                 }
 
                 .title-container {
@@ -137,6 +152,10 @@ class gameCard extends HTMLElement {
 
                     .right {
                         transform: translateX(600px);
+                    }
+
+                    h3 {
+                        font-size: 4rem;
                     }
                 }
 

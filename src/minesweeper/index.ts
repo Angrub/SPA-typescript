@@ -20,11 +20,18 @@ class Minesweeper extends Entity2D {
     }
 
     update(state: LocalState): void {
+
+        // minesweeper state
         if(this.play) {
+
+            // cell clicked
             const cell = this.grid.getClickedCell();
+
             if(cell) {
+                // start game, timer running
                 this.gui.timer.isRunning = true;
 
+                // mode 2
                 if(this.gui.switchButton.buttonState) {
                     const subtractMine = this.grid.mode2(cell);
                     
@@ -34,14 +41,17 @@ class Minesweeper extends Entity2D {
                         this.gui.mineCounter.add();
                     }
 
+                // mode 1
                 } else {
                     this.grid.mode1(cell);
                 }
             }  
         }
+
         this.play = !this.grid.searchExplosion();
     }
 
+    // pix-engine use this function to finish
     gameOver(state: LocalState): void {
         if(!this.play) {
             this.grid.exposeMines();
@@ -52,7 +62,8 @@ class Minesweeper extends Entity2D {
     }
 }
 
-const createGame = (root: Element, width: number, height: number): void => {
+// create minesweeper
+export const createGame = (root: Element, width: number, height: number): void => {
     const config: ConfigCanvas = {
         root: root,
         widthWindow: width,
@@ -69,5 +80,3 @@ const createGame = (root: Element, width: number, height: number): void => {
     game.addScene(main);
     game.on('Main');
 }
-
-export default createGame;

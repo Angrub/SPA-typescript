@@ -1,20 +1,28 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
+// plugins
+const webpackPlugins = [
+    new HtmlWebpackPlugin({
+        inject: true,
+        template: './src/index.html'
+    }) 
+];
+
+// analyze ?
+const shouldAnalyze = process.argv.includes('--analyze');
+if(shouldAnalyze) webpackPlugins.push(new BundleAnalyzer({ analyzerPort: 2001 }));
+
+// common config
 module.exports = {
-    mode: 'development',
-    // entry: './src/components/minesweeper/mines-weeper.ts',
     entry: './src/index.ts',
-    devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: '[name].bundle.js'
     },
     resolve: {
-        extensions: ['.js','.ts'],
-        // alias: {
-
-        // }
+        extensions: ['.js','.ts']
     },
     module: {
         rules: [
@@ -33,15 +41,5 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            inject: true,
-            template: './src/index.html'
-        })
-    ],
-    devServer: {
-        static: path.join(__dirname, 'dist'),
-        compress: true,
-        port: 2000
-    }
+    plugins: webpackPlugins
 }

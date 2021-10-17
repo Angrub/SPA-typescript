@@ -3,7 +3,7 @@ import './components/menu-arcade';
 import './components/footer-arcade';
 import './components/nav-acarde';
 import './components/game-card';
-import './components/game-carrousel';
+import './components/game-carousel';
 import './components/project-info';
 import './components/mines-weeper'
 import router from './router';
